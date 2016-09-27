@@ -9,6 +9,7 @@
   "dependencies": {
     "request-promise": "4.*",
     "bluebird": "3.*",
+    "request": "2.*",
     "munin-plugin": "0.0.9"
   },
   "bin": {
