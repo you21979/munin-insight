@@ -21,9 +21,7 @@ const initialize = () => {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 }
 
-const finalize = (list) => {
-    return munin.create(list);
-}
+const finalize = (list) => munin.create(list)
 
 const main = (arg) => {
     initialize();
@@ -51,7 +49,7 @@ const main = (arg) => {
             return g;
         })
     ]).then(list => {
-        const t = (resp_time) => {
+        const t = resp_time => {
             const g = new munin.Graph('insight response','sec','insight');
             g.add(new munin.Model.Default('response').setValue(resp_time));
             return g
