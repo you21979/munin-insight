@@ -26,15 +26,14 @@ const finalize = (list, resp_time) => {
         g.add(new munin.Model.Default('bitcoin').setValue(sync.height));
         return g;
     }
-    const b = (fee1, fee2, fee3) => {
+    const b = (fee) => {
         const g = new munin.Graph('insight network estimatefee','satoshi','insight');
-        g.add(new munin.Model.Default('02block').setValue(Math.round(fee1[2] * 1e8)));
-        g.add(new munin.Model.Default('06block').setValue(Math.round(fee2[6] * 1e8)));
-        g.add(new munin.Model.Default('12block').setValue(Math.round(fee3[12] * 1e8)));
+        g.add(new munin.Model.Default('fee').setValue(Math.round(fee['2'] * 1e8)));
         return g;
     }
     const c = (status) => {
         const g = new munin.Graph('insight network difficulty','difficulty','insight');
+        g.setScale(true);
         g.add(new munin.Model.Default('bitcoin').setValue(status.difficulty));
         return g;
     }
@@ -43,7 +42,7 @@ const finalize = (list, resp_time) => {
         g.add(new munin.Model.Default('response').setValue(resp_time));
         return g;
     }
-    return munin.create([a(list[0]), b(list[1], list[2], list[3]), c(list[4]), d(resp_time)]);
+    return munin.create([a(list[0]), b(list[1]), c(list[2]), d(resp_time)]);
 }
 
 const main = (arg) => {
@@ -57,8 +56,6 @@ const main = (arg) => {
     return task.seq([
         () => sync(),
         () => estimatefee({nbBlocks:2}),
-        () => estimatefee({nbBlocks:6}),
-        () => estimatefee({nbBlocks:12}),
         () => status({q:"getDifficulty"})
     ]).then(list => {
         finalize(list, process.uptime() - beginTime)
