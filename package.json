@@ -1,0 +1,27 @@
+{
+  "name": "munin-insight",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "request-promise": "4.*",
+    "bluebird": "3.*",
+    "munin-plugin": "0.0.9"
+  },
+  "bin": {
+    "munin_insight" : "./bin/insight_monitor.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/you21979/munin-insight.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/you21979/munin-insight/issues"
+  },
+  "homepage": "https://github.com/you21979/munin-insight#readme"
+}
