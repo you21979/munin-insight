@@ -7,7 +7,7 @@ npm i -g munin-insight
 # test
 
 ```
-BASE_URL="https://localhost/insight-api" /usr/lib/node_modules/munin-insight/bin/insight_monitor.js
+BASE_URL="https://localhost/insight-api" munin_insight
 ```
 
 # munin plugin setup
